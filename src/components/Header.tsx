@@ -30,7 +30,6 @@ export const Header: Component = () => {
       <a id="top" />
 
       <header class="large">
-        {/* <Enso ref={bigEnsoEl} /> */}
         <EnsoMorph />
 
         <h1>Lee<b>Goddard</b></h1>

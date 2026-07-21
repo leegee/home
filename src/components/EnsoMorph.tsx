@@ -15,7 +15,7 @@ export type SvgMorphProps = {
     ref?: HTMLDivElement;
     width?: number;
     height?: number;
-    duration?: number;
+    totalduration?: number;
     delay?: number;
     loop?: boolean;
     fill?: string;
@@ -25,12 +25,14 @@ export type SvgMorphProps = {
     borderRadius?: number;
 };
 
+const SHAPES = [SHAPE_A, SHAPE_B, SHAPE_C];
+
 export default function SvgMorph(props: SvgMorphProps) {
     const width = () => props.width ?? 500;
     const height = () => props.height ?? 500;
-    const duration = () => props.duration ?? 2000;
+    const duration = () => props.totalduration ?? 5000;
     const delay = () => props.delay ?? 1000;
-    const loop = () => props.loop ?? false;
+    const loop = () => props.loop ?? true;
     const fill = () => props.fill ?? "#f8f8f844";
     const stroke = () => props.stroke ?? "#2227";
     const strokeWidth = () => props.strokeWidth ?? 2;
@@ -38,13 +40,10 @@ export default function SvgMorph(props: SvgMorphProps) {
     const borderRadius = () => props.borderRadius ?? 0;
 
     let containerRef: HTMLDivElement | undefined;
+    let interpolators: Array<(t: number) => string> = [];
     let pathRef: SVGPathElement | undefined;
     let rafId: number;
     let timeoutId: ReturnType<typeof setTimeout>;
-
-    // Built once in onMount, reused across loop iterations
-    let interpolatorAB: ((t: number) => string) | undefined;
-    let interpolatorBC: ((t: number) => string) | undefined;
 
     const svgMarkup = `
         <svg
@@ -65,7 +64,7 @@ export default function SvgMorph(props: SvgMorphProps) {
               stroke: ${ stroke() };
               stroke-width: ${ strokeWidth() };
               stroke-linejoin: round;
-              opacity: 0;
+              opacity: 0.7;
               transition: opacity 0.3s;
             "
           />
@@ -74,28 +73,35 @@ export default function SvgMorph(props: SvgMorphProps) {
 
     function startAnimation(): void {
         const dur = duration();
-        const HALF = dur / 2;
+        const segmentDuration = dur / SHAPES.length;
         const startTime = performance.now();
 
         function tick(now: number): void {
             const elapsed = now - startTime;
 
             if (elapsed >= dur) {
-                pathRef?.setAttribute("d", SHAPE_C);
                 if (loop()) {
-                    pathRef?.setAttribute("d", SHAPE_A);
-                    timeoutId = setTimeout(() => startAnimation(), delay());
+                    startAnimation();
+                } else {
+                    pathRef?.setAttribute(
+                        "d",
+                        SHAPES[SHAPES.length - 1]
+                    );
                 }
                 return;
             }
 
-            if (elapsed < HALF) {
-                const t = easeInOut(Math.max(0, Math.min(1, elapsed / HALF)));
-                pathRef?.setAttribute("d", interpolatorAB!(t));
-            } else {
-                const t = easeInOut(Math.max(0, Math.min(1, (elapsed - HALF) / HALF)));
-                pathRef?.setAttribute("d", interpolatorBC!(t));
-            }
+            const segmentIndex = Math.floor(elapsed / segmentDuration);
+            const segmentElapsed = elapsed % segmentDuration;
+
+            const t = easeInOut(
+                Math.max(0, Math.min(1, segmentElapsed / segmentDuration))
+            );
+
+            pathRef?.setAttribute(
+                "d",
+                interpolators[segmentIndex](t)
+            );
 
             rafId = requestAnimationFrame(tick);
         }
@@ -104,12 +110,13 @@ export default function SvgMorph(props: SvgMorphProps) {
     }
 
     onMount(() => {
+        interpolators = SHAPES.map((shape, i) => {
+            const next = SHAPES[(i + 1) % SHAPES.length];
+            return interpolate(shape, next, { maxSegmentLength: 20 });
+        });
+
         pathRef = containerRef?.querySelector<SVGPathElement>("#morph-path") ?? undefined;
         if (pathRef) pathRef.style.opacity = "1";
-
-        // Build interpolators once — maxSegmentLength 20 keeps this fast
-        interpolatorAB = interpolate(SHAPE_A, SHAPE_B, { maxSegmentLength: 20 });
-        interpolatorBC = interpolate(SHAPE_B, SHAPE_C, { maxSegmentLength: 20 });
 
         if (delay() > 0) {
             timeoutId = setTimeout(() => startAnimation(), delay());
