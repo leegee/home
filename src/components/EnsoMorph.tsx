@@ -31,7 +31,7 @@ export default function SvgMorph(props: SvgMorphProps) {
     const width = () => props.width ?? 500;
     const height = () => props.height ?? 500;
     const duration = () => props.totalduration ?? 5000;
-    const delay = () => props.delay ?? 1000;
+    const delay = () => props.delay ?? 2000;
     const loop = () => props.loop ?? true;
     const fill = () => props.fill ?? "#f8f8f844";
     const stroke = () => props.stroke ?? "#2227";
@@ -81,7 +81,7 @@ export default function SvgMorph(props: SvgMorphProps) {
 
             if (elapsed >= dur) {
                 if (loop()) {
-                    startAnimation();
+                    timeoutId = setTimeout(() => startAnimation(), delay());
                 } else {
                     pathRef?.setAttribute(
                         "d",
