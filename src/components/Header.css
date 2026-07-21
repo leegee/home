@@ -1,0 +1,220 @@
+header {
+    h1 {
+        font-weight: 200;
+        opacity: 80%;
+        margin-bottom: 0;
+
+        b {
+            font-weight: 700;
+            opacity: 50%;
+        }
+    }
+}
+
+header.small {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: var(--clr-darkest);
+    z-index: 10;
+    filter: drop-shadow(0 0 0.2em var(--clr-darkest));
+    height: var(--header-small-height);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    transform: translateY(0);
+    transition: transform 0.25s ease;
+    will-change: transform;
+
+    h1 {
+        font-size: 2rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 0.6em;
+        color: var(--clr-light2);
+    }
+
+    .enso svg {
+        display: flex;
+        width: 1.3em;
+        height: 1.3em;
+        margin-right: 0.6em;
+
+        path {
+            stroke: var(--clr-light);
+            stroke-width: 20pt;
+        }
+
+    }
+}
+
+header.small.hidden {
+    transform: translateY(-110%);
+}
+
+header.large {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    margin-bottom: 15vh;
+    min-height: 60vh;
+
+    h1 {
+        font-size: 3.6rem;
+        font-weight: 100;
+        opacity: 60%;
+
+        b {
+            font-weight: 700;
+            opacity: 40%;
+        }
+    }
+
+    h2 {
+        font-weight: 200;
+        font-size: 2rem !important;
+        margin-top: 0.8rem;
+        margin-bottom: 3rem;
+        text-align: center;
+    }
+
+    .enso {
+
+        svg {
+            display: flex;
+            width: 30vw;
+            height: 30vh;
+            filter: drop-shadow(-0.3rem 0.3rem 15px #2222);
+
+            animation: fadeOut linear both;
+            animation-timeline: scroll(root);
+            animation-range: 0 50vh;
+
+            @media screen and (width >=700px) {
+                margin-top: 12vh;
+            }
+
+            @media screen and (width <=900px) {
+                width: 80vw;
+                margin-top: 6rem;
+                margin-bottom: 3rem;
+            }
+
+            /* path {
+                stroke: var(--clr-primary);
+                fill: var(--clr-primary);
+            } */
+        }
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+
+        li {
+            display: block;
+
+            .button {
+                font-size: 1.2rem;
+                border: none;
+                color: var(--clr-dark);
+                background-color: var(--clr-light);
+                padding: 0.3rem 0.6rem;
+                cursor: pointer;
+                outline: 1pt solid transparent;
+            }
+
+            .button:hover,
+            .button:focus {
+                outline: 1pt solid var(--clr-primary);
+            }
+
+            a.github {
+                position: relative;
+                top: 0.05rem;
+                font-size: 1.4rem;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.enso {
+    position: relative;
+    display: inline-block;
+}
+
+.enso svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* glow layer */
+.enso::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    inset: 0;
+
+    /* bright version of your palette */
+    background: radial-gradient(circle at 50% 40%,
+            var(--clr-highlight),
+            var(--clr-highlight2),
+            transparent 25%);
+
+    mix-blend-mode: screen;
+    opacity: 0.25;
+
+    animation: ensoPulse 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes ensoPulse {
+
+    0%,
+    100% {
+        opacity: 0.02;
+        transform: scale(0.1);
+        filter: blur(0px);
+    }
+
+    45% {
+        opacity: 0.12;
+    }
+
+    55% {
+        opacity: 0.25;
+        filter: blur(20pt);
+        transform: scale(1.02);
+    }
+
+    70% {
+        opacity: 0.18;
+    }
+}
