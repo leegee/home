@@ -47,8 +47,9 @@ export default function Index() {
 
           <figcaption>
             <cite>
-              (From an unlicenced publication written by an author unable to provide his name because England has never had "a proud tradition of freedom of speech,"
-              London, October 17, 1648 &mdash; Thomason Tracts collection E.467, EEBO Document A91273, ID 99863437)
+              (From an unlicenced publication written by an author unable to provide his name because England has never had the
+              "proud tradition of freedom of speech" that some claim.
+              Published in London, October 17, 1648 &mdash; Thomason Tracts collection E.467, EEBO Document A91273, ID 99863437)
             </cite>
           </figcaption>
         </figure>
