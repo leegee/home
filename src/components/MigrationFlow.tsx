@@ -28,20 +28,20 @@ interface ParticleFlowProps {
 
 export default function MigrationFlow(props: ParticleFlowProps = {}) {
   const {
-    destinationClr = 'rgba(255,120,80,0.9)',
-    destinationFill = 'rgba(255,120,80,0.35)',
     destinationHeightPct = 0.35,
-    destinationPath = SHAPE_A,
+    destinationPath = SHAPE_C,
     height = 600,
     particleCount = 40_000,
-    particleSize = 1,
-    particleFill = 'rgba(255,220,100,0.95)',
+    particleSize = 2,
     releaseRate = 500,
     sourceHeightPct = 0.35,
-    sourcePath = SHAPE_C,
-    sourceClr = 'rgba(80,160,255,0.9)',
-    sourceFill = 'rgba(80,160,255,0.35)',
-    speed = 6,
+    sourcePath = SHAPE_A,
+    particleFill = 'hsla(357, 100%, 68%, 1)',
+    sourceFill = 'hsla(337, 100%, 68%, 1)',
+    sourceClr = 'hsla(337, 100%, 68%, 0.4)',
+    destinationClr = 'hsla(26, 100%, 68%, 0.3)',
+    destinationFill = 'hsl(26, 100%, 68%)',
+    speed = 3,
     width = 500,
   } = props;
 

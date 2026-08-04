@@ -17,16 +17,7 @@ export const Idea = () => {
           />
         </h2>
 
-        <MigrationFlow
-          width={500}
-          particleCount={4_000}
-          particleSize={2}
-          particleFill={'hsla(357, 100%, 68%, 1)'}
-          sourceFill='hsla(337, 100%, 68%, 1)'
-          sourceClr='hsla(337, 100%, 68%, 0.4)'
-          destinationClr='hsla(26, 100%, 68%, 0.3)'
-          destinationFill='hsl(26, 100%, 68%)'
-        />
+        <MigrationFlow />
 
         <p>
           <a target="_blank" href="https://github.com/leegee/mutatis-mutandis">Mutatis Mutandis on GitHub</a>
