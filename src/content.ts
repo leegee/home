@@ -394,19 +394,19 @@ export const galleries: Section[] = [
             {
                 title: "",
                 description: `<a href='https://www.linkedin.com/in/leegoddard/' target=_blank class='icon-link' title='Linked In'>
-                    <i class=" icon-linkedin-squared"/>
+                    <i class="icon-linkedin-squared"></i>
                 </a>`,
             },
             {
                 title: "",
                 description: `<a href='https://github.com/leegee' target=_blank class='icon-link' title='Git Hub'>
-                    <i class=" icon-github-circled"/>
+                    <i class="icon-github-circled"></i>
                 </a>`,
             },
             {
                 title: '',
                 description: `<a href='https://stackoverflow.com/users/418150/lee-goddard' target=_blank class='icon-link' title='Stack Overflow'>
-                    <i class=" icon-stackoverflow"/>
+                    <i class="icon-stackoverflow"></i>
                 </a>`
             },
         ]
