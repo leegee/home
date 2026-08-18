@@ -18,9 +18,42 @@ export const Idea = () => {
         </h2>
 
         <MigrationFlow />
+      </section>
 
-        <p>
-          <a target="_blank" href="https://github.com/leegee/mutatis-mutandis">Mutatis Mutandis on GitHub</a>
+      <section style="max-width:30em;margin:auto">
+        <p><i>Privacy</i> is not a modern word. In the 1590s it appears in English with the meaning "a private or personal matter, a secret,"
+          and shortly thereafter developed the sense of seclusion or retirement from company.</p>
+
+        <p>That usage reflects earlier Middle English forms such as <i>privauté</i>, <i>privatie</i>, <i>priveté</i>, <i>pryvete</i>,
+          and <i>privitee</i>, derived through Anglo-French/Old French <i>privauté</i> from Latin <i>privatus</i>. These forms were used to signify
+          hidden matters, secrets, secret acts, and states of being apart from public observation &mdash; including forms of intimacy, often amorous.</p>
+
+        <p>The specifically modern sense of privacy as a "freedom from intrusion or interference" does not appear until the early nineteenth century
+          (OED, <i>privacy</i>, n., sense 3; first examples from 1814).</p>
+
+        <p>Accordingly, a lexical search through the surviving historical corpora of English law would not uncover the word <i>privacy</i> in
+          any document surrounding the 1765 case of <i>Entick v Carrington</i>, a case that is now frequently understood through the language of
+          privacy because it protected interests that later became central to privacy law: the security of personal papers, the home, and freedom
+          from arbitrary intrusion.</p><p>Similarly, a search through historical literature for terms such as "child abuse" or "wife beating" might
+            lead a naive researcher to conclude that these are modern phenomena, or at least that they were not recognised in earlier periods.</p>
+
+        <p>Turning the question around: who today is using the concept of liberty as it was used by Milton, or Hobbes, or Locke?</p>
+
+        <p>Repeatedly, at certain points in the historical record, new terms emerge not necessarily to describe entirely new ideas, but to
+          gather together and name a range of experiences, practices and legal or social concerns that had previously been expressed through
+          different vocabularies. Those earlier terms were themselves products of historical development and were not always the ordinary
+          language of their time.</p><p>My project allows a user to trace these moments change to produce a kind of lineage that enables
+            modern researchers, academic and lay alike, to locate historical examples of phenomena that may have been described using terms
+            unfamiliar to contemporary readers.</p>
+
+        <hr style="border:none;height:2em" />
+
+        <p style="opacity:80%"><sup>1</sup> This is not intended to diminish cultural continuity through long-lived texts and traditions such as the Bible.</p>
+
+        <hr style="border:none;height:2em" />
+
+        <p style="text-align:right">
+          &mdash; <a target="_blank" href="https://github.com/leegee/mutatis-mutandis">Mutatis Mutandis on GitHub</a>
         </p>
       </section>
     </article>
