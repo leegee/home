@@ -91,17 +91,25 @@ export default function SvgMorph(props: SvgMorphProps) {
                 return;
             }
 
-            const segmentIndex = Math.floor(elapsed / segmentDuration);
-            const segmentElapsed = elapsed % segmentDuration;
+            const segmentIndex = Math.min(
+                Math.floor(elapsed / segmentDuration),
+                interpolators.length - 1
+            );
+
+            const segmentElapsed = elapsed - segmentIndex * segmentDuration;
 
             const t = easeInOut(
-                Math.max(0, Math.min(1, segmentElapsed / segmentDuration))
+                Math.max(
+                    0,
+                    Math.min(1, segmentElapsed / segmentDuration)
+                )
             );
 
-            pathRef?.setAttribute(
-                "d",
-                interpolators[segmentIndex](t)
-            );
+            const interpolator = interpolators[segmentIndex];
+
+            if (interpolator) {
+                pathRef?.setAttribute("d", interpolator(t));
+            }
 
             rafId = requestAnimationFrame(tick);
         }
