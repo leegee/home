@@ -1,6 +1,6 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import ftp from "basic-ftp";
-import path from "path";
-import { fileURLToPath } from "url";
 import { config } from "dotenv";
 
 const __filename = fileURLToPath(import.meta.url);
