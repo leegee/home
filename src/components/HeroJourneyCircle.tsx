@@ -83,18 +83,24 @@ export default function HeroJourneyCircle(props: Props) {
 	const height = () => Number(props.height || 1200);
 	const cx = () => width() / 2;
 	const cy = () => height() / 2;
-	const isWide = (stageIndex: number) => 0 === stageIndex % (STAGES.length / 2);
+
+	const isWide = (stageIndex: number) =>
+		stageIndex === 0 || stageIndex === STAGES.length / 2;
+
 	const boxWidth = (stageIndex: number) =>
 		isWide(stageIndex) ? (props.boxExtraWidth ?? 350) : (props.boxWidth ?? 270);
+
 	const boxHeight = (stageIndex: number) =>
 		isWide(stageIndex)
 			? (props.boxExtraHeight ?? 100)
 			: (props.boxHeight ?? 100);
+
 	const baseRadius = 360;
 
 	const nodes = createMemo(() =>
 		STAGES.map((stage, stageIndex) => {
-			const angle = ((-90 + stageIndex * 30) * Math.PI) / 180; // That is is some cray thinking. Why not 360 / STAGES.length
+			const angle =
+				((-90 + stageIndex * (360 / STAGES.length)) * Math.PI) / 180;
 			const radius = isWide(stageIndex) ? baseRadius + 60 : baseRadius;
 			const x = cx() + radius * Math.cos(angle);
 			const y = cy() + radius * Math.sin(angle);
